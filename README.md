@@ -46,11 +46,11 @@ Then build the vector store and run the agent:
 
 `test_seti.py` runs 15 questions and checks whether the model picks the expected tool(s) on its first step. The set covers single-tool questions, two-tool questions, a customer that does not exist, and an out-of-scope question (no tool expected).
 
-**Result: [X]/15 correct tool selections** (single run, [date]).
+**Result: 15/15 correct tool selections** (single run, 15 Nov 2026, gemini-3.6-flash).
 
 What this measures: only tool selection, not answer quality. Failed cases:
 
-- [Question number and a one-line explanation of what went wrong, or "none"]
+- None in this run. The question set is small and written by the author, so it is likely easier than real traffic; harder and ambiguous questions are planned.
 
 ## Limitations
 
