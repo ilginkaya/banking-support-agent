@@ -1,3 +1,4 @@
+import os
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -35,10 +36,11 @@ def bilgi_ara(soru: str) -> str:
     return "\n\n".join(d.page_content for d in docs)
 
 agent = create_agent(
-    model="google_genai:gemini-3.6-flash",
+    model="google_genai:" + os.environ.get("MODEL", "gemini-3.5-flash-lite"),
     tools=[kredi_taksiti, hesap_bilgisi, bilgi_ara],
     system_prompt="Bir banka destek asistanısın. Sadece araçlardan gelen bilgiye dayan. "
-                  "Araçlarda bilgi yoksa bilmediğini söyle.",
+                  "Araçlarda bilgi yoksa bilmediğini söyle. "
+    "Para transferi, kart iptali gibi işlemleri yapamazsın; bunu kullanıcıya açıkça söyle.",
 )
 
 def metin(m):

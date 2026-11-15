@@ -1,10 +1,12 @@
+import os
 import time
 from langchain.chat_models import init_chat_model
 from agent import kredi_taksiti, hesap_bilgisi, bilgi_ara
 
 SYSTEM = ("Bir banka destek asistanısın. Sadece araçlardan gelen bilgiye dayan. "
-          "Araçlarda bilgi yoksa bilmediğini söyle.")
-llm = init_chat_model("google_genai:gemini-3.6-flash").bind_tools(
+          "Araçlarda bilgi yoksa bilmediğini söyle. "
+    "Para transferi, kart iptali gibi işlemleri yapamazsın; bunu kullanıcıya açıkça söyle.")
+llm = init_chat_model("google_genai:" + os.environ.get("MODEL", "gemini-3.5-flash-lite")).bind_tools(
     [kredi_taksiti, hesap_bilgisi, bilgi_ara])
 
 TEST = [
